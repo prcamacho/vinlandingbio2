@@ -1,5 +1,26 @@
 (() => {
   const root = document.documentElement;
+
+  const cancelDefault = (event) => {
+    if (event.cancelable) event.preventDefault();
+  };
+  document.addEventListener("contextmenu", cancelDefault);
+  document.addEventListener("selectstart", cancelDefault);
+  document.addEventListener("dragstart", cancelDefault);
+  document.addEventListener("keydown", (event) => {
+    const zoomKey = ["+", "=", "-", "_", "0"].includes(event.key);
+    if ((event.ctrlKey || event.metaKey) && zoomKey) cancelDefault(event);
+  });
+  document.addEventListener("wheel", (event) => {
+    if (event.ctrlKey) cancelDefault(event);
+  }, { passive: false });
+  document.addEventListener("touchstart", (event) => {
+    if (event.touches.length > 1) cancelDefault(event);
+  }, { passive: false });
+  for (const gesture of ["gesturestart", "gesturechange", "gestureend"]) {
+    document.addEventListener(gesture, cancelDefault, { passive: false });
+  }
+
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
   const photoLink = document.querySelector(".destination");

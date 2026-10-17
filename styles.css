@@ -15,8 +15,9 @@
   /* Reserve space for the identity, padding and device safe areas. */
   --photo-size: min(350px, calc(100vw - 48px), calc((100svh - 136px - env(safe-area-inset-top) - env(safe-area-inset-bottom)) / 2));
 }
-*, *::before, *::after { box-sizing: border-box; }
-html, body { margin: 0; min-width: 240px; }
+*, *::before, *::after { box-sizing: border-box; -webkit-user-select: none; user-select: none; }
+html, body { margin: 0; min-width: 240px; touch-action: pan-x pan-y; -webkit-touch-callout: none; }
+img { -webkit-user-drag: none; }
 body {
   min-height: 100svh;
   background:
