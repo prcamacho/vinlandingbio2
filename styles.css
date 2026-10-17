@@ -80,10 +80,13 @@ body::before {
 }
 .intro { display: none; }
 .is-loading .intro { display: flex; flex-direction: column; align-items: center; justify-content: center; position: fixed; inset: 0; z-index: 10; background: radial-gradient(ellipse at center, #442033, #200e1b 70%); }
-.intro__monogram { position: relative; color: var(--rose); font: 400 94px/1.3 var(--brush); letter-spacing: -10px; animation: monogram-in 700ms cubic-bezier(.16, 1, .3, 1) both; }
-.intro__star { position: absolute; right: -29px; top: 6px; color: #edc3b5; font: 22px/1 Georgia, serif; animation: star-in 600ms 180ms both; }
+.intro__monogram { position: relative; color: var(--rose); font: 400 94px/1.3 var(--brush); letter-spacing: -10px; }
+.is-intro-playing .intro__monogram { animation: monogram-in 700ms cubic-bezier(.16, 1, .3, 1) both; }
+.intro__star { position: absolute; right: -29px; top: 6px; color: #edc3b5; font: 22px/1 Georgia, serif; }
+.is-intro-playing .intro__star { animation: star-in 600ms 180ms both; }
 .intro__line { width: 44px; height: 1px; margin-top: 15px; background: #e9a8bc66; overflow: hidden; }
-.intro__line::after { display: block; content: ""; height: 100%; background: #f6b4c7; transform-origin: left; animation: loading-line 1100ms ease-in-out both; }
+.intro__line::after { display: block; content: ""; height: 100%; background: #f6b4c7; transform-origin: left; transform: scaleX(0); }
+.is-intro-playing .intro__line::after { animation: loading-line 1700ms ease-in-out both; }
 .is-loading .page-shell { opacity: 0; }
 .is-revealing .intro { display: flex; animation: intro-out 450ms ease forwards; pointer-events: none; }
 .is-revealing .page-shell { animation: scene-in 650ms cubic-bezier(.16, 1, .3, 1) both; }
@@ -113,6 +116,6 @@ body::before {
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
-  .intro, .is-loading .intro, .is-revealing .intro { display: none; }
-  .is-loading .page-shell { opacity: 1; }
+  .intro__monogram { transform: rotate(-4deg); }
+  .intro__line::after { transform: scaleX(1); }
 }

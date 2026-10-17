@@ -1,5 +1,42 @@
 (() => {
   const root = document.documentElement;
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const page = document.querySelector(".page-shell");
+  const delay = (ms) => new Promise((resolve) => window.setTimeout(resolve, ms));
+  let introStarted = false;
+  let revealed = false;
+  let safetyTimeout;
+
+  function reveal() {
+    if (revealed) return;
+    revealed = true;
+    window.clearTimeout(safetyTimeout);
+    root.classList.add("is-revealing");
+    window.setTimeout(() => {
+      root.classList.remove("is-loading", "is-intro-playing", "is-revealing");
+      page.inert = false;
+    }, reducedMotion ? 0 : 650);
+  }
+
+  function startIntro() {
+    if (introStarted || document.hidden) return;
+    introStarted = true;
+    document.removeEventListener("visibilitychange", startIntro);
+    root.classList.add("is-intro-playing");
+    safetyTimeout = window.setTimeout(reveal, 3000);
+    const imagesReady = Promise.allSettled(
+      Array.from(document.images, (image) => image.decode?.() ?? Promise.resolve()),
+    );
+    Promise.all([delay(1700), imagesReady, document.fonts?.ready])
+      .then(reveal)
+      .catch(reveal);
+  }
+
+  // Start the intro before other interactions, and count its duration only once visible.
+  root.classList.add("is-loading");
+  page.inert = true;
+  document.addEventListener("visibilitychange", startIntro);
+  startIntro();
 
   const cancelDefault = (event) => {
     if (event.cancelable) event.preventDefault();
@@ -21,7 +58,7 @@
     document.addEventListener(gesture, cancelDefault, { passive: false });
   }
 
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  if (reducedMotion) return;
 
   const photoLink = document.querySelector(".destination");
   const hoverAvailable = window.matchMedia("(hover: hover) and (pointer: fine)");
@@ -53,19 +90,4 @@
     }
   });
 
-  root.classList.add("is-loading");
-  const delay = (ms) => new Promise((resolve) => window.setTimeout(resolve, ms));
-  let revealed = false;
-  function reveal() {
-    if (revealed) return;
-    revealed = true;
-    root.classList.add("is-revealing");
-    window.setTimeout(() => root.classList.remove("is-loading", "is-revealing"), 700);
-  }
-  // Keep the intro brief on slow connections. The link works without JavaScript.
-  const safetyTimeout = window.setTimeout(reveal, 1800);
-  const imagesReady = Promise.allSettled(Array.from(document.images, (image) => image.decode()));
-  Promise.all([delay(1050), imagesReady, document.fonts.ready])
-    .then(() => { window.clearTimeout(safetyTimeout); reveal(); })
-    .catch(reveal);
 })();
