@@ -60,11 +60,22 @@
       </main>
     </div>
     <dialog class="browser-help" id="external-browser-help" aria-label="Elegir navegador">
-      <span class="browser-help__arrow" id="browser-help-arrow" aria-hidden="true" hidden><svg viewBox="0 0 74 70" fill="none"><path d="M6 65C47 64 31 19 65 7M43 7h23v23" /></svg></span>
+      <div class="browser-help__hint" id="browser-help-arrow" role="status" hidden>
+        <svg class="browser-help__arrow" viewBox="0 0 74 70" fill="none" aria-hidden="true"><path d="M6 65C47 64 31 19 65 7M43 7h23v23" /></svg>
+        <p class="browser-help__hint-label"><span aria-hidden="true">⋯</span>Abrir en navegador externo</p>
+      </div>
       <button class="browser-help__close" type="button" aria-label="Cerrar ayuda"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6" /></svg></button>
       <div class="browser-help__actions">
-        <a class="browser-help__primary" id="browser-help-chrome" href="https://vinsalta.com/" hidden>Abrir en Chrome</a>
-        <button class="browser-help__secondary" id="browser-help-other" type="button" aria-controls="browser-help-arrow" aria-expanded="false">Usar otro navegador</button>
+        <a class="browser-help__primary" id="browser-help-chrome" href="https://vinsalta.com/" hidden>
+          <span class="browser-help__button-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" /><circle cx="12" cy="12" r="3.5" /><path d="M12 8.5h8.3M15 13.8l-4.2 7.1M9 13.7 4.9 6.4" /></svg></span>
+          <span>Abrir en Chrome</span>
+          <svg class="browser-help__button-arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12" /></svg>
+        </a>
+        <button class="browser-help__secondary" id="browser-help-other" type="button" aria-controls="browser-help-arrow" aria-expanded="false">
+          <span class="browser-help__button-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" /><ellipse cx="12" cy="12" rx="4" ry="9" /><path d="M3 12h18" /></svg></span>
+          <span>Usar otro navegador</span>
+          <svg class="browser-help__button-arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 6 6 6-6 6" /></svg>
+        </button>
       </div>
     </dialog>
   </body>
