@@ -59,22 +59,13 @@
         </a>
       </main>
     </div>
-    <button class="external-browser-tip" id="external-browser-tip" type="button" aria-haspopup="dialog" aria-controls="external-browser-help" hidden>
-      <svg class="external-browser-tip__arrow" viewBox="0 0 74 70" fill="none" aria-hidden="true"><path d="M6 65C47 64 31 19 65 7M43 7h23v23" /></svg>
-      <span class="external-browser-tip__dots" aria-hidden="true">•••</span>
-      <span>Abrí en tu navegador</span>
-    </button>
-    <dialog class="browser-help" id="external-browser-help" aria-labelledby="browser-help-title" aria-describedby="browser-help-description">
+    <dialog class="browser-help" id="external-browser-help" aria-label="Elegir navegador">
+      <span class="browser-help__arrow" id="browser-help-arrow" aria-hidden="true" hidden><svg viewBox="0 0 74 70" fill="none"><path d="M6 65C47 64 31 19 65 7M43 7h23v23" /></svg></span>
       <button class="browser-help__close" type="button" aria-label="Cerrar ayuda"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6" /></svg></button>
-      <span class="browser-help__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M14 4h6v6M20 4l-9 9M10 5H5a1 1 0 0 0-1 1v13a1 1 0 0 0 1 1h13a1 1 0 0 0 1-1v-5" /></svg></span>
-      <h2 id="browser-help-title">Abrilo en tu navegador</h2>
-      <p id="browser-help-description">Tocá los tres puntos <strong>⋯</strong> de Instagram, arriba o abajo a la derecha, y elegí <strong>«Abrir en el navegador»</strong>.</p>
-      <p class="browser-help__destination" id="browser-help-destination"></p>
       <div class="browser-help__actions">
-        <a class="browser-help__primary" id="browser-help-chrome" href="https://bio2.vinsalta.com/" hidden>Intentar abrir en Chrome <span aria-hidden="true">↗</span></a>
-        <button class="browser-help__secondary" id="browser-help-copy" type="button">Copiar enlace</button>
+        <a class="browser-help__primary" id="browser-help-chrome" href="https://vinsalta.com/" hidden>Abrir en Chrome</a>
+        <button class="browser-help__secondary" id="browser-help-other" type="button" aria-controls="browser-help-arrow" aria-expanded="false">Usar otro navegador</button>
       </div>
-      <p class="browser-help__status" id="browser-help-status" role="status" aria-live="polite"></p>
     </dialog>
   </body>
 </html>

@@ -102,55 +102,29 @@ body::before {
 .is-loading .page-shell { opacity: 0; }
 .is-revealing .intro { display: flex; animation: intro-out 450ms ease forwards; pointer-events: none; }
 .is-revealing .page-shell { animation: scene-in 650ms cubic-bezier(.16, 1, .3, 1) both; }
-.external-browser-tip[hidden], .browser-help__primary[hidden] { display: none; }
-.external-browser-tip {
-  position: fixed;
-  z-index: 5;
-  top: calc(62px + env(safe-area-inset-top));
-  right: 18px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 7px;
-  width: 146px;
-  padding: 11px 12px;
-  border: 1px solid #ffe4ed66;
-  border-radius: 15px;
-  color: #341b2b;
-  background: #f8d5e0f5;
-  box-shadow: 0 10px 30px #10061055;
-  cursor: pointer;
-  font: 600 11px/1.35 "Segoe UI", Arial, sans-serif;
-}
-.external-browser-tip__arrow { position: absolute; width: 55px; height: 52px; top: -52px; right: 2px; stroke: #f8d5e0; stroke-width: 2.8; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 2px 4px #130913); }
-.external-browser-tip__dots { padding: 2px 8px 4px; border-radius: 20px; background: #3c2231; color: #ffe7ef; font-size: 11px; line-height: 1; letter-spacing: 2px; }
-.is-loading .external-browser-tip { visibility: hidden; }
 .browser-help {
-  width: min(380px, calc(100vw - 32px));
+  width: min(340px, calc(100vw - 32px));
   max-height: calc(100svh - 32px);
   margin: auto;
-  padding: 26px 24px 20px;
+  padding: 55px 24px 24px;
   border: 1px solid #f7c4d140;
   border-radius: 26px;
   color: #fff1f0;
   background: radial-gradient(ellipse at top left, #64344a70, transparent 80%), #2b1625;
   box-shadow: 0 26px 90px #0c040cc9;
+  overflow: visible;
 }
 .browser-help::backdrop { background: #100710b8; backdrop-filter: blur(6px); }
 .browser-help__close { display: grid; place-items: center; position: absolute; top: 12px; right: 12px; width: 40px; height: 40px; border: 0; border-radius: 50%; background: transparent; color: #dfbbc9; cursor: pointer; }
 .browser-help svg { width: 21px; height: 21px; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
-.browser-help__icon { display: grid; place-items: center; width: 43px; height: 43px; margin-bottom: 17px; border: 1px solid #f4b8cc40; border-radius: 14px; color: var(--rose); background: #f6b4c710; }
-.browser-help h2 { margin: 0 0 13px; font: 400 27px/1.16 Georgia, "Times New Roman", serif; letter-spacing: -.4px; }
-.browser-help p { margin: 0; font-size: 13px; line-height: 1.6; color: #d9b9c7; }
-.browser-help strong { color: #ffe8ee; font-weight: 600; }
-.browser-help .browser-help__destination { margin-top: 14px; color: #f1b7ca; font-size: 12px; letter-spacing: .4px; }
-.browser-help__actions { display: grid; gap: 9px; margin-top: 19px; }
-.browser-help__primary, .browser-help__secondary { display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 45px; padding: 10px 14px; border: 1px solid #f7c4d140; border-radius: 13px; cursor: pointer; text-decoration: none; font: 600 12px/1.4 "Segoe UI", Arial, sans-serif; }
+.browser-help__arrow[hidden], .browser-help__primary[hidden] { display: none; }
+.browser-help__arrow { position: fixed; top: calc(12px + env(safe-area-inset-top)); right: 20px; width: 64px; height: 61px; color: #f8d5e0; filter: drop-shadow(0 2px 4px #130913); pointer-events: none; }
+.browser-help__arrow svg { width: 100%; height: 100%; stroke-width: 2.8; }
+.browser-help__actions { display: grid; gap: 10px; }
+.browser-help__primary, .browser-help__secondary { display: flex; align-items: center; justify-content: center; min-height: 48px; padding: 12px 14px; border: 1px solid #f7c4d140; border-radius: 13px; cursor: pointer; text-decoration: none; font: 600 14px/1.4 "Segoe UI", Arial, sans-serif; }
 .browser-help__primary { color: #341b2b; background: #f6c2d3; }
 .browser-help__secondary { color: #f6d2df; background: #f6c2d309; }
-.browser-help .browser-help__status { margin-top: 12px; font-size: 11px; }
-.browser-help__status:empty { display: none; }
-.external-browser-tip:focus-visible, .browser-help a:focus-visible, .browser-help button:focus-visible { outline: 2px solid #fbd0dd; outline-offset: 3px; }
+.browser-help a:focus-visible, .browser-help button:focus-visible { outline: 2px solid #fbd0dd; outline-offset: 3px; }
 @keyframes monogram-in { from { opacity: 0; transform: translateY(12px) rotate(-7deg) scale(.94); } to { opacity: 1; transform: translateY(0) rotate(-4deg) scale(1); } }
 @keyframes star-in { from { opacity: 0; transform: rotate(-50deg) scale(.3); } to { opacity: 1; transform: rotate(0) scale(1); } }
 @keyframes loading-line { from { transform: scaleX(0); } to { transform: scaleX(1); } }
