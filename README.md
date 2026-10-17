@@ -10,6 +10,12 @@ Landing estática, sin dependencias, inspirada en la composición de meganfox.wo
 
 Dominio configurado: https://bio2.vinsalta.com/. Incluye URL canónica, Open Graph y Twitter con URLs absolutas. La vista previa social usa el monograma VS y una descripción neutral, sin fotografías.
 
+## Cloudflare Workers
+
+El archivo `wrangler.jsonc` configura el Worker existente `vinlandingbio2`. El comando de despliegue `npx wrangler deploy` ejecuta automáticamente `npm run build` y publica únicamente `dist/`, con la página, los estilos, el script y las imágenes. Se puede mantener vacío el comando de build del panel de Cloudflare porque Wrangler se encarga de ese paso.
+
+No usar la raíz del repositorio como directorio de assets: incluiría herramientas de desarrollo y archivos que no pertenecen al sitio.
+
 ## Imágenes y diseño
 
 - Portada: foto del balcón, original de 598 × 598 px.
