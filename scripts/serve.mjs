@@ -10,7 +10,7 @@ createServer(async (request, response) => {
   try {
     const requestUrl = new URL(request.url, "http://localhost");
     const pathname = decodeURIComponent(requestUrl.pathname);
-    if (pathname !== "/" && !["/index.html", "/styles.css", "/app.js", "/browser-help.js"].includes(pathname) && !pathname.startsWith("/assets/")) {
+    if (pathname !== "/" && !["/index.html", "/styles.css", "/app.js", "/browser-help.js", "/analytics.js"].includes(pathname) && !pathname.startsWith("/assets/")) {
       response.writeHead(404).end("Not found"); return;
     }
     const path = resolve(root, `.${pathname === "/" ? "/index.html" : pathname}`);

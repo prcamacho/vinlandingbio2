@@ -6,7 +6,7 @@ Landing estática, sin dependencias, inspirada en la composición de meganfox.wo
 
 - `npm run dev`: servidor local en http://localhost:4173.
 - `npm run build`: copia el sitio listo para publicar a `dist/`.
-- También se puede publicar directamente `index.html`, `styles.css`, `app.js`, `browser-help.js` y `assets/` en cualquier alojamiento estático.
+- También se puede publicar directamente `index.html`, `styles.css`, `app.js`, `browser-help.js`, `analytics.js` y `assets/` en cualquier alojamiento estático.
 
 Dominio configurado: https://bio2.vinsalta.com/. Incluye URL canónica, Open Graph y Twitter con URLs absolutas. La vista previa social usa el monograma VS y una descripción neutral, sin fotografías.
 
@@ -15,6 +15,16 @@ Dominio configurado: https://bio2.vinsalta.com/. Incluye URL canónica, Open Gra
 El archivo `wrangler.jsonc` configura el Worker existente `vinlandingbio2`. El comando de despliegue `npx wrangler deploy` ejecuta automáticamente `npm run build` y publica únicamente `dist/`, con la página, los estilos, el script y las imágenes. Se puede mantener vacío el comando de build del panel de Cloudflare porque Wrangler se encarga de ese paso.
 
 No usar la raíz del repositorio como directorio de assets: incluiría herramientas de desarrollo y archivos que no pertenecen al sitio.
+
+## PostHog
+
+La landing envía una visita (`$pageview`) por carga al mismo proyecto de PostHog Cloud US que vinsalta.com (629107). `analytics.js` contiene su token público de ingesta; no requiere claves privadas ni variables en Cloudflare. El SDK slim sin dependencias externas de PostHog 1.434.14 se aloja en `assets/`, junto con su licencia.
+
+Para ver únicamente esta landing en PostHog, filtrar Web Analytics por hostname `bio2.vinsalta.com`, o los informes de eventos por `site = bio2`. El sitio principal conserva `site = com`. Sin filtro, las vistas generales del proyecto pueden sumar ambos sitios. Se comparte el proyecto, no la identidad anónima entre dominios.
+
+Solo se mide HTTPS en `bio2.vinsalta.com/` (o `/index.html`). Localhost, previews de Cloudflare y otras rutas no envían eventos. Respeta Do Not Track y Global Privacy Control; no activa autocaptura, grabaciones, perfiles, flags ni encuestas. Las propiedades se reconstruyen desde una lista permitida, sin query strings, fragmentos, referrers, formularios ni datos de usuario. Mantener activo **Settings → Project → Privacy → Discard client IP data**, como en el proyecto principal. Si un bloqueador impide el envío, la página y su enlace siguen funcionando.
+
+La integración registra visitas; no registra clics ni crea informes o dashboards automáticamente. Para comprobar la publicación, abrir la landing sin bloqueadores ni opt-out y buscar `$pageview` con `site = bio2` en los eventos en vivo de PostHog.
 
 ## Imágenes y diseño
 
