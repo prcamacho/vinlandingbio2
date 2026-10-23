@@ -29,7 +29,7 @@ La integración registra visitas; no registra clics ni crea informes o dashboard
 ## Imágenes y diseño
 
 - Portada: foto del balcón, original de 598 × 598 px.
-- Enlace: foto en el sillón junto al ventanal, original de 839 × 839 px.
+- Enlace: foto con máscara negra, original de 1646 × 1646 px.
 - Ambas mantienen su proporción cuadrada y se adaptan al ancho y la altura disponibles. En pantallas apaisadas de al menos 480 px de ancho, tanto desktop como teléfonos girados, se distribuyen en una fila: portada, título y foto enlace. En vertical conservan la composición apilada. El cambio se aplica al redimensionar o girar la pantalla.
 - Las fotos llegan hasta 600 px por lado en horizontal y 480 px en vertical cuando hay espacio, sin añadir scroll. El título, los márgenes y las fotos se ajustan juntos al espacio disponible, incluyendo las zonas seguras del teléfono. Sus bordes cercanos al texto se desvanecen hacia el fondo real de la página; el degradado acompaña la disposición vertical u horizontal.
 - El único texto de la página aparece entre las fotos: «Vin_Salta» y «Contenido Exclusivo». El monograma VS aparece durante la breve entrada.
